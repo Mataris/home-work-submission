@@ -1,0 +1,16 @@
+---
+# tasks file for roles/local_inventory
+- name: Create inventory directory
+  file:
+    path: "{{workdir}}/inventory"
+    state: directory
+
+- name: Remove files if exists
+  file: 
+    path: "{{workdir}}/inventory/inventory_local"
+    state: absent
+
+- name: Create local inventory file
+  template:
+    src: inventory_local.j2
+    dest: "{{workdir}}/inventory/inventory_local"
